@@ -1,8 +1,6 @@
 FROM php:8.2-cli
 
-    RUN apt-get update && apt-get install -y git curl libpng-dev libonig-dev libxml2-dev libzip-dev
-    libpq-dev zip unzip && docker-php-ext-install pdo_pgsql pgsql mbstring exif pcntl bcmath zip &&
-    apt-get clean && rm -rf /var/lib/apt/lists/*
+    RUN apt-get update && apt-get install -y git curl libpng-dev libonig-dev libxml2-dev libzip-dev libpq-dev zip unzip && docker-php-ext-install pdo_pgsql pgsql mbstring exif pcntl bcmath zip && apt-get clean && rm -rf /var/lib/apt/lists/*
 
     COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
@@ -19,4 +17,4 @@ FROM php:8.2-cli
 
     EXPOSE 8000
 
-    CMD ["/bin/sh", "-c", "php artisan migrate --force && php -S 0.0.0.0:8000 -t public"
+    CMD ["/bin/sh", "-c", "php artisan migrate --force && php -S 0.0.0.0:8000 -t public"]
