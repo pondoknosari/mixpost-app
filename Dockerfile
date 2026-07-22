@@ -7,8 +7,7 @@ FROM php:8.2-cli
     WORKDIR /app
 
     COPY composer.json composer.lock ./
-    RUN composer install --no-dev --prefer-dist --ignore-platform-req=ext-pcntl
-    --ignore-platform-req=ext-posix --no-scripts --no-autoloader
+    RUN composer install --no-dev --prefer-dist --ignore-platform-req=ext-pcntl --ignore-platform-req=ext-posix --no-scripts --no-autoloader
 
     COPY . .
     RUN composer dump-autoload --optimize && php artisan storage:link --force
