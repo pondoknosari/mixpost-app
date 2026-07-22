@@ -1,0 +1,11 @@
+vendor
+node_modules
+/public/storage
+/public/vendor
+/storage/*.key
+/.env
+.env.*.local
+.env.backup
+docker-compose.override.yml
+.git
+.gitignore
