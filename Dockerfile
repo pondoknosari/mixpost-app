@@ -19,4 +19,4 @@ FROM php:8.2-cli
 
     EXPOSE 8000
 
-    CMD ["/bin/sh", "-c", "php artisan migrate --force && php -S 0.0.0.0:8000 -t public"]
+    CMD ["/bin/sh", "-c", "php artisan migrate --force && php -S 0.0.0.0:8000 -t public"
