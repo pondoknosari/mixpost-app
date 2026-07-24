@@ -14,11 +14,14 @@ RUN composer install --no-dev --prefer-dist --ignore-platform-req=ext-pcntl --ig
 
 COPY . .
 
+# Generate autoloader BEFORE any artisan commands
+RUN composer dump-autoload --optimize
+
 # Build Mixpost assets from vendor package and publish to public/
 RUN cd vendor/inovector/mixpost && npm install && npm run build
 RUN php artisan mixpost:publish-assets --force
 
-RUN composer dump-autoload --optimize
+# Laravel setup
 RUN php artisan config:cache && php artisan route:cache
 RUN php artisan storage:link --force
 
